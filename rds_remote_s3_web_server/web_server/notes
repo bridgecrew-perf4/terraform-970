@@ -1,0 +1,4 @@
+Remote_state file was created to read from rds remote_state file  in 
+this case its stored on s3 bucket. You treat this remote_state file 
+as a sensitive file , because it contains sensitive data, not everyone 
+can have access to it.
