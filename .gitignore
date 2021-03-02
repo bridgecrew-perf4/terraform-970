@@ -1,3 +1,7 @@
 Ignore providers file
 
 *providers.*
+.DS_Store
+.terraform
+*.tfstate
+variables.*
