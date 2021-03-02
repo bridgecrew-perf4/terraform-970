@@ -5,5 +5,5 @@ variable "env" {
 }
 variable "account_id" {
     description = "account id"
-    default = 974912841781
+    default = "" # enter your account id
 }
