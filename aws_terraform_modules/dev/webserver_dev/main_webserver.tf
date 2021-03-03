@@ -1,5 +1,5 @@
 module "webserver_module" {
-  source = "../../../../t../../modules/web_server"
+  source = "../../../../../../modules/web_server"
   
   env = "dev"
   instance_type = "t2.micro"
