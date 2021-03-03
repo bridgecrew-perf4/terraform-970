@@ -1,5 +1,5 @@
 module "rds_module" {
-  source =  "/Users/nazgulkhalilova/Desktop/terraform_class/session_8/modules/rds"
+  source =  "../../../../../../modules/rds"
   env = "dev"
   storage = 10
   skip_snapshot = "true"
