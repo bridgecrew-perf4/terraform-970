@@ -38,6 +38,6 @@ resource "aws_security_group_rule" "local_laptop" {
   from_port         = 3306
   to_port           = 3306
   protocol          = "TCP"
-  cidr_blocks       = ["108.210.198.102/32"]
+  cidr_blocks       = ["0.0.0.0/0"] # your IP address
   security_group_id = aws_security_group.rds_sg.id
 } 
