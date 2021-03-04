@@ -4,7 +4,7 @@
 - AWS account
 - Terraform 
 
-## Folder structure 
+## Folders structure 
 <p>
 In this template we have modules folder (child)  and dev/rds && qa/rds (root) folders, in child folder we leave the part which is all resources are described including providers file , just terraform block. We can add additional resources inside of the root module in this case it is pet_name resource, it can be changed depending on which environment you are creating your resources. 
 </p>
