@@ -13,7 +13,7 @@ data "aws_ami" "amazon_linux2" {
 }
 
 data "template_file" "user_data"  {
-  template = filebase64("/Users/nazgulkhalilova/Desktop/terraform_class/session_8/modules/web_server/template_file/user_data.sh") 
+  template = filebase64("${path.module}/user_data.sh") 
   vars = {  
     env = var.env
     address = data.terraform_remote_state.rds.outputs.address
