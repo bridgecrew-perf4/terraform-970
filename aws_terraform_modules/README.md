@@ -21,7 +21,7 @@ When we call user_data from our root web-server module in child module we have t
 On AWS console it will look like this:
 <img src="aws_terraform_modules/aws.img/terraform-nazy_state.png" alt="aws" width="800" height="500">
 Content of state folder:
-<img src="content_of_state.png" alt="aws" width="800" height="500">
+<img src="content_of_state.png" alt="aws" width="100" height="60">
 Content of dev environment folder:
 <img src="content_of_dev.png" alt="aws" width="800" height="500">
 Content of qa environmetn folder:
