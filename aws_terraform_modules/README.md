@@ -19,12 +19,19 @@ When we call user_data from our root web-server module in child module we have t
 </p>
 
 On AWS console it will look like this:
+
 <img src="aws.img/terraform-nazy_state.png" alt="aws" width="500" height="100">
+
 Content of state folder:
+
 <img src="aws.img/content_of_state.png" alt="aws" width="500" height="100">
+
 Content of dev environment folder:
+
 <img src="aws.img/content_of_dev.png" alt="aws" width="500" height="100">
+
 Content of qa environmetn folder:
+
 <img src="aws.img/content_of_qa.png" alt="aws" width="500" height="100">
 
 ## Wrapper 
