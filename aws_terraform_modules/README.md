@@ -19,7 +19,6 @@ terraform {
     }
   }
 }
-
 ```
 <p>
 We can add additional resources inside of the root module in this case it is pet_name resource, it can be changed depending on which environment you are creating your resources. 
