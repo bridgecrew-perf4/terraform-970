@@ -18,7 +18,6 @@ When we create rds db and  try to refer to it’s remote file from our web-serve
 When we call user_data from our root web-server module in child module we have to use “template = file("${path.module}/user_data.sh")” , otherwise it will look for the user_data inside of the root module and it won’t file it there, and it will give an error. But the path.module should solve that problem for us.
 </p>
 
-<<<<<<< HEAD
 On AWS console it will look like this:
 <img src="aws_terraform_modules/aws.img/terraform-nazy_state.png" alt="aws" width="800" height="500">
 Content of state folder:
@@ -27,9 +26,8 @@ Content of dev environment folder:
 <img src="content_of_dev.png" alt="aws" width="800" height="500">
 Content of qa environmetn folder:
 <img src="content_of_qa.png" alt="aws" width="800" height="500">
-=======
+
 ## Wrapper 
->>>>>>> f801823f76f9826b342f4387a7bcff8cb335e881
 
 Bash script for changing environment:
 
