@@ -1,4 +1,4 @@
-### Define variables
+### Define variables root module
 
 variable "env" {
     description = "the name of the environment"

@@ -1,5 +1,5 @@
 module "rds_module" {
-  source =  "../../../../../../modules/rds"
+  source =  "../../modules/rds"
   env = "qa"
   storage = 15
   skip_snapshot = "true"
