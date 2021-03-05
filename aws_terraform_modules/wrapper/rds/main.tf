@@ -1,10 +1,11 @@
 module "rds_module" {
   source =  "../../modules/rds"
-  env = "dev"
+
+  env = var.env
   storage = 10
-  skip_snapshot = "true"
-  instance_class = "db.t2.micro"
-  username = "dev_user"
+  skip_snapshot = var.skip_snapshot
+  instance_class = var.instance_class
+  username = var.username
 }
 
 output "username" {

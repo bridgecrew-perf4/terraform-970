@@ -1,8 +1,8 @@
 module "webserver_module" {
-  source = "../../../../../../modules/web_server"
+  source = "../../modules/web_server"
   
-  env = "dev"
-  instance_type = "t2.micro"
+  env = var.env
+  instance_type = var.instance_type
   
   remote_state = {
       bucket = "terraform-nazy-state"

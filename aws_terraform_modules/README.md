@@ -6,8 +6,8 @@
 - VS Code installed
 
 ## Folders structure 
-
-In this template we have modules folder (child)  and dev/rds && qa/rds (root) folders, in child folder we leave the part which is all resources are described including ```providers``` file , just terraform block. 
+<p>
+In this template we have modules folder (child)  and dev/rds && qa/rds (root) folders, in child folder we leave the part which is all resources are described including providers.tf file , just terraform block. 
 
 ```
 terraform {
@@ -20,7 +20,6 @@ terraform {
   }
 }
 ```
-<p>
 We can add additional resources inside of the root module in this case it is pet_name resource, it can be changed depending on which environment you are creating your resources. 
 </p>
 
@@ -107,11 +106,16 @@ variable "username" {
     description = "the username of database"
     type = string
 }
-
 ```
-
-Bash script for changing environment:
-
+Even though we set up a backend file terraform still creates tfstate file for backup and terraform will refer to that file because it will have information about dev environment in dev state file and qa environment in qa state file. From the wrapper folder , since we are not using different folders, there are will be .terraform created and inside of it terraform.tfstate, we have to remove that one , because we are using backend. And the next bash script set_env.sh (inside of the wrapper folder) will help us to do that in the second line of script and will help us to set environment. Each time when we run our bash script with providers argument ```./set_env.sh``` ```dev``` or ```qa``` it will go change the environment in the backend file.
+for dev environment
+```
+bash set_env.sh dev 
+```
+for qa environment
+``` 
+bash set_env.sh qa   
+```
 ```
 #!/bin/bash
 rm -rf .terraform/terraform.tfstate
@@ -119,5 +123,43 @@ ENV="$1"
 sed -i ' ' -e "s|__env__|$ENV|" backend.tf
 terraform init
 echo "Environment is set to $ENV"
-
 ```
+In pipeline you are going to choose environment and version as we said earlier, and then most likely it will be downloaded from the GitHub and when it will get downloaded your backend.tf file will look like this:
+```
+terrform {
+  backend “s3”
+    bucket  = “terraform-nazy-state”
+    key      = “__env__/rds.tfstate”
+    region = “us-east-1”
+    dynamo_table = “terraform-state-locks”
+}
+```
+Once the environment is set you can use your regular:
+```
+terraform apply var-file tfvars/dev.tf
+```
+or
+```
+terraform apply var-file tfvars/qa.tf
+```
+depending which environment you are creating your resources. 
+In order to avoid issues with extra created backend.tf you might want to add to your dev.tf file next lines:
+```
+  bucket = "terraform-nazy-state"
+  key = "dev/rds.tfstate"
+  region = "us-east-1"
+  dynamodb_table = "terraform-state-locks" 
+```
+Where you specify your backend.tf name and location. The same thing you will do for qa.tf. Usually your backend.tf won't be in your wrapper folder, in Jenkins it will come to dev.tf file and read the values of the bucket, region, key and dynamodb_table and will create the backend.tf for you. After that it will run
+```
+terraform init
+terraform plan
+terraform apply
+```
+Also it does it for terraform.lock file as well, because we set the proper restrictions in providers section. And it's even setting the modules. 
+But changing the environment this way is not the final version you can make your bash script to change the values of the backend file , let's say __env__ part of ``` key = “__env__/rds.tfstate”``` so it does't have to recreate your backend.tf each time. 
+Inside of your rds root module you can also create new resource file using ```count``` module , depending for which environment create resources or not.
+
+### Notes
+
+Whenever we do changes on backend.tf of the location for remote_state file we need to run terraform init, to initialize the new location of the s3 bucket.
