@@ -6,7 +6,7 @@ module "webserver_module" {
   
   remote_state = {
       bucket = "terraform-nazy-state"
-      key = "dev/rds.tfstate"
+      key = "qa/rds.tfstate"   # change to dev 
       region = "us-east-1"
   }
 }
