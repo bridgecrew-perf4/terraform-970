@@ -35,7 +35,9 @@ module "s3_module" {
   env = var.environment
 }
 ```
-After the changing of source to github we run terraform plan it will give us that our infrastructure is up to date, then lets do some changes by adding another action to bucket policy and run terraform plan again, it won't do anything , because since our source is coming from github it doesn't know about our changes, that we made locally, we have to push our code to github.
+After the changing of source to github we run ```terraform plan``` it will give us that our infrastructure is up to date, then let's do some changes by adding another action to bucket policy and run ```terraform plan``` again, it won't do anything, because since our source is coming from github it doesn't know about our changes what we made locally, we have to push our code to github. After the pushing to github when we run ```terraform plan``` , it still says that our infrastructure up to date.
+The reason behind it because when we changed a source our ```root module``` dowloaded the source from the github locally, so that means we are still using the local version of our github. So for Terraform to get the newer version of our code we have to run ```terraform init -upgrade```, which
+will force terraform to download the newer version of github to local ```root module```.
 
 ## Notes
 The lifecycle setting all affect how Terraform constucts and rraverses the dependency graph. As a result, only literal values can be used befause the processing happens too early for arbitrary expression evaluation. It means that we can't use prevent destroy as a variable.
