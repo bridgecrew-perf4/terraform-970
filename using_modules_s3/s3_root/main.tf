@@ -6,3 +6,5 @@ module "s3" {
   principals = var.principals_list
   env = var.environment
 }
+#?ref=v0.2.0 - refering to tag version
+#?ref=nazy_branch -  refering to branch
