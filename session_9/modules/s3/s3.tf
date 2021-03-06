@@ -43,7 +43,8 @@ data "aws_iam_policy_document" "state_policy_document" {
   statement {
     actions = [
       "s3:ListBucket",
-      "s3:DeleteBucket"
+      "s3:DeleteBucket",
+      "s3:GetBucketAcl"
     ]
 
     resources = [
