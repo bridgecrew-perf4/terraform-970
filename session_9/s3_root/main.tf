@@ -1,4 +1,4 @@
-module "s3_module" {
+module "github.com/nazy67/terraform/session_9//modules/s3" {
   source =  "../modules/s3"
 
   s3_bucket_name = var.s3_name
