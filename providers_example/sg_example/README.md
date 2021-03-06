@@ -1,0 +1,1 @@
+This example show us that we can create two resources using alias for the different region which we declared inside of the providers.tf file. Our resources are identical but since we are specifying defferent region it isn't not complaning about the name of it. 

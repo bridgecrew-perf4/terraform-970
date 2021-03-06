@@ -129,3 +129,4 @@ So when we make a commit changes to github we create a tag for that change and l
 The lifecycle setting all affect how Terraform constucts and rraverses the dependency graph. As a result, only literal values can be used befause the processing happens too early for arbitrary expression evaluation. It means that we can't use prevent destroy as a variable.
 When you give a name for your s3 bucket don't use underscore just hyphens are excepted. 
 When we want to use the specific version of our code, not the latest one we can specify the version in ```child module``` that compitable with our code.
+Using modules in Terraform is not just for reusability  it's also used to restrict you from creating  the resources that are not complaint with the company policies.  For that they are introduce one layer of check not to allow you to create those resources.
