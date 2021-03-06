@@ -14,6 +14,10 @@ resource "aws_s3_bucket" "remote_state" {
   lifecycle {
       prevent_destroy = false
   }
+    tags = {
+    Name        = var.s3_bucket_name
+    Environment = var.env
+  }
 }
 
 resource "aws_s3_bucket_policy" "state_policy" {

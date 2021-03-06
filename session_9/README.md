@@ -35,10 +35,52 @@ module "s3_module" {
   env = var.environment
 }
 ```
-After the changing of source to github we run ```terraform plan``` it will give us that our infrastructure is up to date, then let's do some changes by adding another action to bucket policy and run ```terraform plan``` again, it won't do anything, because since our source is coming from github it doesn't know about our changes what we made locally, we have to push our code to github. After the pushing to github when we run ```terraform plan``` , it still says that our infrastructure up to date.
-The reason behind it because when we changed a source our ```root module``` dowloaded the source from the github locally, so that means we are still using the local version of our github. So for Terraform to get the newer version of our code we have to run ```terraform init -upgrade```, which
-will force terraform to download the newer version of github to local ```root module```.
+
+After the changing of source to github we run 
+
+```
+terraform plan -var-file tfvars/dev.tf
+``` 
+
+it will give us that our infrastructure is up to date, then let's do some changes by adding another action to bucket policy and run
+
+ ```
+terraform plan -var-file tfvars/dev.tf
+``` 
+
+again, it won't do anything, because since our source is coming from github it doesn't know about our changes what we made locally, we have to push our code to github. After the pushing to github when we run 
+
+```
+terraform plan -var-file tfvars/dev.tf
+``` 
+
+it will still says that our infrastructure up to date.
+The reason behind it because when we changed a source our ```root module``` dowloaded the source from the github locally, so that means we are still using the local version of our github. So for Terraform to get the newer version of our code we have to run 
+```
+terraform init -upgrade
+```
+which will force terraform to download the newer version of github to local ```root module```. After that we should be able to run: 
+
+```
+tf plan -var-file tfvars/dev.tf
+``` 
+and after 
+```
+tf apply -var-file tfvars/dev.tf
+``` 
+But each time when we run
+
+```
+terraform init -upgrade
+```
+
+it takes longer to download the newer version of our code, since we want just the updated part of the code we can run, 
+```
+terraform get -update
+```
+It will get just resent changes. 
 
 ## Notes
+
 The lifecycle setting all affect how Terraform constucts and rraverses the dependency graph. As a result, only literal values can be used befause the processing happens too early for arbitrary expression evaluation. It means that we can't use prevent destroy as a variable.
 When you give a name for your s3 bucket don't use underscore just hyphens are excepted. 
