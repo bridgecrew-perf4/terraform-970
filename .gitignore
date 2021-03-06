@@ -4,5 +4,4 @@ Ignore providers file
 .DS_Store
 .terraform
 *.tfstate
-#variables.*
 variable.*
