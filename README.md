@@ -3,7 +3,7 @@ Terraform AWS Template
 
  ## Prerequisites:
    - AWS account
-   - Terraform 
+   - Terraform installed 
 
 ## Usage
 
