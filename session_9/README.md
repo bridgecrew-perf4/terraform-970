@@ -55,11 +55,11 @@ terraform plan -var-file tfvars/dev.tf
 ``` 
 
 it will still says that our infrastructure up to date.
-The reason behind it because when we changed a source our ```root module``` dowloaded the source from the github locally, so that means we are still using the local version of our github. So for Terraform to get the newer version of our code we have to run 
+The reason behind it because when we changed a source our ```child module``` dowloaded the source from the github locally, so that means we are still using the local version of our github. So for Terraform to get the newer version of our code we have to run 
 ```
 terraform init -upgrade
 ```
-which will force terraform to download the newer version of github to local ```root module```. After that we should be able to run: 
+which will force terraform to download the newer version of github to local ```child module```. After that we should be able to run: 
 
 ```
 tf plan -var-file tfvars/dev.tf
@@ -80,7 +80,33 @@ terraform get -update
 ```
 It will get just resent changes. 
 
+Incase if our ```child module``` is managed by other team or someone else and they do some changes in that file, as an example we take tags:
+
+```
+   tags = {
+    Name        = var.s3_bucket_name
+    Environment = var.env
+  }
+```
+We have our module source in github and if we want specific version of our code we have to specify it in the source module by refering to it
+
+```
+module "s3" {
+  source =  "github.com/nazy67/terraform//session_9/modules/s3?ref=main"
+
+```
+or specific branch of github. The next example will show how we can refer to a specific branch.
+We will create a new branch on github 
+```
+git checkout -b nazy-branch 403fc276a3ea18234c2c9c314a202e8fdbed9aea 
+```
+
+this is the one of         older version of the code on github
+```
+git push --set-upstream origin nazy_branch
+```
 ## Notes
 
 The lifecycle setting all affect how Terraform constucts and rraverses the dependency graph. As a result, only literal values can be used befause the processing happens too early for arbitrary expression evaluation. It means that we can't use prevent destroy as a variable.
 When you give a name for your s3 bucket don't use underscore just hyphens are excepted. 
+When we want to use the specific version of our code, not the latest one we can specify the version in ```child module``` that compitable with our code.
