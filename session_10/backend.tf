@@ -1,8 +1,9 @@
 terraform {
   backend "s3" {
   bucket = "terraform-nazy-state"
-  key = "dev/rds.tfstate"
+  key = "session_10/ws.tfstate"
   region = "us-east-1"
   dynamodb_table = "terraform-state-locks"
+  #workspace_prefix = 
   } 
 }
