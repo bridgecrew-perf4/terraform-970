@@ -3,8 +3,50 @@ From the root module I'm calling child rds and webserver modules, where the sour
 ```
 source = "github.com/nazy67/terraform/aws_terraform_modules//modules/web_server"
 ```
-or call it locally
+or call it locally just give a relative path
 ```
 source = "../../../aws_terraform_modules/modules/web_server"
 ```
-both works. Webserver child module has a remote_state.tf file where I give the description of rds.tfstate file, which I want to use to retrive a data from rds state file such as address (endpoint) and username of database user. I used the data source for rds state file in webserver child module   the issue I faced it was that terraform wasn't able to find to find rds.tfstate file so to solve that I have to give a full path to that state file. When I worked with folder structure I just had to path a key value we had a this case rds-state file and refer to it from a root module you need to give a full path for that rds-state file , otherwise terraform isn't able to find it. 
+both works. Webserver child module has a remote_state.tf file where I give the description of rds.tfstate file, which I want to use to retrive a data from rds state file such as address (endpoint) and username of database user. I used the data source for rds state file in webserver child module   the issue I faced it was that terraform wasn't able to find rds.tfstate file so to solve that I have to give a full path to that state file. When I worked with folder structure I just had to path a key and just the name of state file, but in workspace terraform behaves differnently so a I had refer to rds.tfstate by giving a full path.You can either do it from the state file, but just key values because this resources willbe created and I still don't know what the names will those files get, in the next line you can see it better: 
+```
+data "terraform_remote_state" "rds" {
+  backend = "s3"
+  config = {
+    bucket =   var.remote_state["bucket"]
+    key = "${var.remote_state["workspace_key_prefix"]}/${var.env}/${var.remote_state["key"]}"
+    region = var.remote_state["region"]
+ }                                                                      
+}
+```
+ in this case root webserver module will look like this:
+ ```
+  remote_state = {
+     bucket = "terraform-nazy-state"
+     key = "rds.tfstate"
+     region = "us-east-1"
+     workspace_key_prefix = "ws-homework"
+  } 
+}
+
+ ```
+ Or you can change it on root webserver module:
+ ```
+  remote_state = {
+     bucket = "terraform-nazy-state"
+     key = "ws-homework/${terraform.workspace}/rds.tfstate"
+     region = "us-east-1"
+     workspace_key_prefix = "ws-homework"
+  } 
+}
+ ```
+ and child webserver module data remote_state file will look in the next code:
+ ```
+ data "terraform_remote_state" "rds" {
+  backend = "s3"
+  config = {
+    bucket =   var.remote_state["bucket"]
+    key = var.remote_state["key"]
+    region = var.remote_state["region"]
+ }                                                                      
+}
+ ```
