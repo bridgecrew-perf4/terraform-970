@@ -7,13 +7,13 @@ or call it locally just give a relative path
 ```
 source = "../../../aws_terraform_modules/modules/web_server"
 ```
-both works. Webserver child module has a remote_state.tf file where I give the description of rds.tfstate file, which I want to use to retrive a data from rds state file such as address (endpoint) and username of database user. I used the data source for rds state file in webserver child module   the issue I faced it was that terraform wasn't able to find rds.tfstate file so to solve that I have to give a full path to that state file. When I worked with folder structure I just had to path a key and just the name of state file, but in workspace terraform behaves differnently so a I had refer to rds.tfstate by giving a full path.You can either do it from the state file, but just key values because this resources willbe created and I still don't know what the names will those files get, in the next line you can see it better: 
+both works. Webserver child module has a remote_state.tf file where I give the description of rds.tfstate file, which I want to use to retrive a data from rds state file such as address (endpoint) and username of database user. I used the data source for rds state file in webserver child module   the issue I faced it was that terraform wasn't able to find rds.tfstate file so to solve that I have to give a full path to that state file. When I worked with folder structure I just had to path a key and just the name of state file, but in workspace terraform behaves differnently so a I had refer to rds.tfstate by giving a full path.You can either do it from the state file, but just key values because this resources willbe created and the names will be known after the creation in the next line of code can show it better: 
 ```
 data "terraform_remote_state" "rds" {
   backend = "s3"
   config = {
     bucket =   var.remote_state["bucket"]
-    key = "${var.remote_state["workspace_key_prefix"]}/${var.env}/${var.remote_state["key"]}"
+    key = "${var.remote_state["workspace_key_prefix"]}/${var.env}/${var.remote_state["key"]}". # here we are just passing key values
     region = var.remote_state["region"]
  }                                                                      
 }
@@ -29,7 +29,7 @@ data "terraform_remote_state" "rds" {
 }
 
  ```
- Or you can change it on root webserver module:
+ Or we can change it on root webserver module:
  ```
   remote_state = {
      bucket = "terraform-nazy-state"
