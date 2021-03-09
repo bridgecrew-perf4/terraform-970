@@ -35,11 +35,11 @@ workspace_key_prefix = "workspace-prefix"
 ```
 So what it does is instead of ```env:/```  we will have  ```"workspace-prefix"```. In AWS Console our state files will look like in the next image for dev workspace:
 
-<img src="aws.img/workspace_dev.png" alt="aws" width="500" height="100">
+<img src="aws.img/workspace_dev.png" alt="aws" width="500" height="200">
 
 and for qa workspace:
 
-<img src="aws.img/wokspace_qa.png" alt="aws" width="500" height="100">
+<img src="aws.img/wokspace_qa.png" alt="aws" width="500" height="200">
 
 Whenever you do any changes in backend.tf always re apply ```terraform init```. Working on terraform gives us oportunity to use the same code for two different environments and where we have two different state files inside of our s3 bucket. So we can apply, destroy our resources independently from each other. In forder structure we mention that we can create additional custom resources inside of our root module, we also used count module to specifically saying for dev env create additional resource and for qa env don't create it. 
 ```
