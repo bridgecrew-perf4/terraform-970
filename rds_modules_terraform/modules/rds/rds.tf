@@ -5,7 +5,7 @@ resource "aws_db_instance" "rds-db" {
   engine_version       = "10.5"
   instance_class       = var.instance_class
   identifier           = "${var.env}-rds"
-  name                 = "my_rds"
+  name                 = "my-rds"
   username             = var.username
   password             = random_password.password.result
   skip_final_snapshot = var.skip_snapshot 

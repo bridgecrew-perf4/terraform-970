@@ -4,7 +4,7 @@ module "rds_module" {
   storage = 10
   skip_snapshot = "true"
   instance_class = "db.t2.micro"
-  username = "devuser"
+  username = "dev_user"
 }
 
 resource "random_pet" "test" {  
