@@ -50,7 +50,7 @@ resource "random_pet" "test" {
   count = var.env == "qa" ? 1 : 0
 }
 ```
-We can do the same thing on terraform workspaces, and one more thing as I mentioned earlier we solve the name issue for our resource name with interpolations , but we can also use workspace name for it in that case we don't depend on our tfvars/dev.tf or tfvars/qa.tf files. 
+We can do the same thing on terraform workspaces, and one more thing as I mentioned earlier we solve the name issue for our resource name with interpolations, but we can also use workspace name for it in that case we don't depend on our tfvars/dev.tf or tfvars/qa.tf files. 
 ```
 resource "aws_sqs_queue" "terraform-queue" {
     name = "${terraform.workspace}-terraform-nazy-queue"
@@ -69,3 +69,4 @@ https://www.terraform.io/docs/language/state/workspaces.html
 ## Notes
 Before you do any thing while you worknig on wordspaces always check which environment you are working, bu running command terraform workspace list or show, just to make sure where you are deploying your resources.
 You can not delete your workspace while you are inside of it. 
+If you leave workspace_prefix in your backend file, and you are not working with workspaces, it won't do anything when you provision. 
