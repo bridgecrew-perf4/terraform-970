@@ -23,7 +23,7 @@ owner = lookup(local.env_to_owner, local.env_short, "devowner@test.com")
 ```
 So now we can see that when we create our sqs in the tags we should see this:
 
-<img src="aws_image/sqs_tagging.png" alt="aws" width="400" height="200">
+<img src="aws_image/sqs_tagging.png" alt="aws" width="600" height="200">
 
 And the name of sqs resource will come at the begining with the name of environment:
 
