@@ -23,11 +23,11 @@ owner = lookup(local.env_to_owner, local.env_short, "devowner@test.com")
 ```
 So now we can see that when we create our sqs in the tags we should see this:
 
-<img src="aws_image/sqs_tagging.png" alt="aws" width="300" height="100">
+<img src="aws_image/sqs_tagging.png" alt="aws" width="600" height="200">
 
 And the name of sqs resource will come at the begining with the name of environment:
 
-<img src="aws_image/name_sqs.png" alt="aws" width="300" height="20">
+<img src="aws_image/name_sqs.png" alt="aws" width="800" height="100">
 
 ## Links
- https://www.terraform.io/docs/language/functions/index.html
+ [Terraform functions](https://www.terraform.io/docs/language/functions/index.html)

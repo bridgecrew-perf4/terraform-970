@@ -6,7 +6,7 @@ resource "aws_instance" "ec2" {
   ami                    = var.ami
   instance_type          = var.instance_type
   tags = {
-    "Name" = each.value
+    "Name" = each.value. # by giving value you create ec2 with different names
   }
 }
 output "ec2_name" {

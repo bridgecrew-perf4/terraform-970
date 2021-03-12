@@ -116,7 +116,7 @@ terraform get -update
 ``` 
 it will get us the needed version of our code. But still it's not a pefect solution for us , what if someone do some changes on that branch. In that case we can refer to a specific commit, using releases on github. We create a tag using release , we choose resent commit and use it to refer to that commit.
 
-<img src="aws.img/tags_release.png" alt="aws" width="500" height="100">
+<img src="aws.img/tags_release.png" alt="aws" width="600" height="200">
 
 ```
 module "s3" {
