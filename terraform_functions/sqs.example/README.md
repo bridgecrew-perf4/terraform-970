@@ -30,4 +30,4 @@ And the name of sqs resource will come at the begining with the name of environm
 <img src="aws_image/name_sqs.png" alt="aws" width="800" height="100">
 
 ## Links
- https://www.terraform.io/docs/language/functions/index.html
+ [Terraform functions](https://www.terraform.io/docs/language/functions/index.html)
