@@ -3,7 +3,7 @@
 There a lot of funcitons in terraform, for different used cases. 
 To test some of the terraform numeric function you can use terraform console and test them there, especially numeric functions. ```abs``` function returns the absolute value. ```ceil``` and ```floor``` functions are oposite of each other, will round up or down the closest whole number. ```signum``` gives three outputs if it's positive number it gives ```1```, if it's ```0``` it gives ```0```, and if it's negative it gives ```-1```.
 
-<img src="aws_image/numeric.png" alt="aws" width="300" height="300">
+<img src="aws_image/numeric.png" alt="aws" width="300" height="400">
 
 We will create sqs with full environment name and use terraform functions to retrive the environment name from the given locals, but before doing that we need to understand waht ```full environment name``` is, explanation is given next:
 ```
