@@ -1,0 +1,1 @@
+In this example we are giving values for the instance type and ami in the terraform.tfvars file and we are removing default values from the variables.tf file. 
