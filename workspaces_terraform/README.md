@@ -61,12 +61,13 @@ resource "random_pet" "test" {
 ```
 We can use terraform workspace in modules as well and the second example with s3 bucket. Here we do some changes by adding interpolations into the name of our s3 bucket, which terraform will get from the workspace name where we are creation our resources. If you have multiple terraform deployments for multiple applications you can set the same tfstate file and set the same prefix, and the workspace you can use the same for multiple environments just use the different file name for each resource.
 Workspaces we can use the same resources for different environment but isolate our backend file.
-A common use for workspaces you use the parallel copy of your infrastructure  for testing without touching your main production infrastructure , after that you can apply those changes your main infrastructure with new one.
+A common use for workspaces you use the parallel copy of your infrastructure  for testing without touching your main production infrastructure , after that you can apply those changes your main infrastructure.
 
 ## Links
+
 [Terraform workspaces](https://www.terraform.io/docs/language/state/workspaces.html)
 
 ## Notes
-Before you do any thing while you worknig on wordspaces always check which environment you are working, bu running command terraform workspace list or show, just to make sure where you are deploying your resources.
+Before you do any thing while you worknig on workspaces always check which environment you are working on by running command ```terraform workspace list``` or show, just to make sure where you are deploying your resources.
 You can not delete your workspace while you are inside of it. 
-If you leave workspace_prefix in your backend file, and you are not working with workspaces, it won't do anything when you provision. 
+If you leave workspace_prefix in your backend file, and you are not working with workspaces, it won't do anything when you provision your resources. 
