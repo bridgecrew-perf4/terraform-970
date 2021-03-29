@@ -29,7 +29,7 @@ As an example we will create ```dev``` and ```qa``` workspaces and will work fro
 resource "aws_sqs_queue" "terraform-queue" {
     name = "${var.env}-terraform-nazy-queue"
 ```  
-and we pass variables file dev.tf or qa.tf. Let's say that we have a resource in dev env, and we use same name for a state file and apply for qa env terraform's behavior will be go and destroy existing resource and create the new one with qa env name. But when we work on terraform workspace we can create the same resource for different environments and the name of our state file in backend.tf will not give us any issues, because it's is getting created in different workspaces also terraform workspace has an option to prefix our state files with ```env:/```. But since we don’t want our resources with the same names, otherwise it will get confusing really fast. For the backend setting we will use, 
+and we pass variables file dev.tf or qa.tf. Let's say that we have a resource in dev env, and we use same name for a state file and apply for qa env terraform's behavior will be go and destroy existing resource and create the new one with qa env name. But when we work on terraform workspace we can create the same resource for different environments and the name of our state file in backend.tf will not give us any errors, because it's is getting created in different workspaces also terraform workspace has an option to prefix our state files with ```env:/```. But since we don’t want our resources with the same names, otherwise it will get confusing really fast. For the backend setting we will use, 
 ```
 workspace_key_prefix = "workspace-prefix"
 ```
