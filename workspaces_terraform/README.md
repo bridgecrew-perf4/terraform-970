@@ -50,7 +50,7 @@ resource "random_pet" "test" {
   count = var.env == "qa" ? 1 : 0
 }
 ```
-We can do the same thing on terraform workspaces, and one more thing as I mentioned earlier we solve the name issue for our resource name with interpolations, but we can also use workspace name for it in that case we don't depend on our tfvars/dev.tf or tfvars/qa.tf files. 
+We can do the same thing on terraform workspaces, and one more thing as I mentioned earlier we solve the name issue for our resource name with interpolations, but we can also use workspace name for it, in that case we don't depend on our tfvars/dev.tf or tfvars/qa.tf files. 
 ```
 resource "aws_sqs_queue" "terraform-queue" {
     name = "${terraform.workspace}-terraform-nazy-queue"
