@@ -95,12 +95,12 @@ The next command  will taint/untaint the instances that are in the state file. T
 ```
 terraform taint/untaint resourcetype.resourcename (aws_instance.test_instance)
 ```
-Output from running command above is next:
+Output from running command above will be:
 
 ```
 Resource instance aws_instance.test_instance has been marked as tainted. 
 ```
-Then next commands are:
+The next command is ```terraform state rm```:
 
 ```
 terraform state rm aws_instance.test_instance
