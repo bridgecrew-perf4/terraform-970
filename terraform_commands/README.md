@@ -1,5 +1,7 @@
 ## Terraform (state) commands
 
+Terraform has lots of commands which you want to be familiar with if you want to use Terraform, and detailed descrition is given in the next link [alphabetical list of commands](https://www.terraform.io/docs/cli/commands/import.html)
+
 If you run ```terraform state``` command you will get list of the subcomands that you can use with terraform state:
 ```
 Subcommands:
