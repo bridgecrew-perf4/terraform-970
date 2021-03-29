@@ -128,4 +128,7 @@ The next command is ```terraform refresh``` this command will compare the state 
 
 ```terraform fmt``` command will will make sure your code (configurations) are well formated by hashi corp standards.
 
-```terraform import``` will import existing resources into terraform. 
+```terraform import``` will import existing resources into terraform.To copy a module you need to run the next command:
+```
+terraform import module.my-ec2.aws_instance.ec2-instance i-0a0c9cd872cb1a200
+```
