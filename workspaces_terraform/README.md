@@ -24,14 +24,18 @@ Select command will select the workspace
 ```
 terraform workspace select
 ```
+<p>
 As an example we will create ```dev``` and ```qa``` workspaces and will work from there. Previously, when we worked with  environment isolation using folder structure our state file was inside of every resource folder, for example for rds in dev env one backend.tf and for qa env is separate backend.tf where state file names were different depending which env our state files are created for, and the name issue for our resouces we solve by adding interpolations to resources names,
+</p>
+
 ```
 resource "aws_sqs_queue" "terraform-queue" {
     name = "${var.env}-terraform-nazy-queue"
 ```
 <p>
 and we pass variables file dev.tf or qa.tf. Let's say that we have a resource in dev env, and we use same name for a state file and apply for qa env terraform's behavior will be go and destroy existing resource and create the new one with qa env name. But when we work on terraform workspace we can create the same resource for different environments and the name of our state file in backend.tf will not give us any errors, because it's is getting created in different workspaces also terraform workspace has an option to prefix our state files with ```env:/```. But since we don’t want our resources with the same names, otherwise it will get confusing really fast. For the backend setting we will use,
-</p>    
+</p>
+
 ```
 workspace_key_prefix = "workspace-prefix"
 ```
@@ -42,6 +46,7 @@ So what it does is instead of ```env:/```  we will have  ```"workspace-prefix"``
 and for qa workspace:
 
 <img src="aws.img/wokspace_qa.png" alt="aws" width="700" height="100">
+
 <p>
 Whenever you do any changes in backend.tf always re apply ```terraform init```. Working on terraform gives us opportunity to use the same code for two different environments and where we have two different state files inside of one s3 bucket. So we can apply, destroy our resources independently from each other. In forder structure we mention that we can create additional custom resources inside of our root module, we also used count module to specifically saying for dev env create additional resource and for qa env don't create it.
 </p>    
@@ -54,9 +59,11 @@ resource "random_pet" "test" {
   count = var.env == "qa" ? 1 : 0
 }
 ```
+
 <p>
 We can do the same thing on terraform workspaces, and one more thing as I mentioned earlier we solve the name issue for our resource name with interpolations, but we can also use workspace name for it, in that case we don't depend on our tfvars/dev.tf or tfvars/qa.tf files.
-</p>    
+</p>
+
 ```
 resource "aws_sqs_queue" "terraform-queue" {
     name = "${terraform.workspace}-terraform-nazy-queue"
@@ -65,6 +72,7 @@ resource "random_pet" "test" {
   count = terraform.workspace == "qa" ? 1 : 0
 }
 ```
+
 <p>
 We can use terraform workspace in modules as well and the second example with s3 bucket. Here we do some changes by adding interpolations into the name of our s3 bucket, which terraform will get from the workspace name where we are creation our resources. If you have multiple terraform deployments for multiple applications you can set the same tfstate file and set the same prefix, and the workspace you can use the same for multiple environments just use the different file name for each resource.
 </p>
