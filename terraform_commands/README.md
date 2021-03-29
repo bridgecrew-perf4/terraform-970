@@ -130,5 +130,10 @@ The next command is ```terraform refresh``` this command will compare the state 
 
 ```terraform import``` will import existing resources into terraform.To copy a module you need to run the next command:
 ```
-terraform import module.my-ec2.aws_instance.ec2-instance i-0a0c9cd872cb1a200
+terraform import module.my-ec2.aws_instance.ec2-instance i-0a0c9cd872cb1a200. # module.modules_name.resource_type.resource_name followed by resource ID
 ```
+To import an ec2 it will look like this:
+```
+terraform import aws_instance.my-ec2 i-0a0c9cd872cb1a200 # resource_type.resource_name followed by resource ID.
+```
+resource
