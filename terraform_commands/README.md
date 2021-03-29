@@ -136,4 +136,7 @@ To import an ec2 it will look like this:
 ```
 terraform import aws_instance.my-ec2 i-0a0c9cd872cb1a200 # resource_type.resource_name followed by resource ID.
 ```
-resource
+For the s3 bucket it looks like this"
+```
+terraform import aws_s3_bucket.bucket bucket-name
+```
