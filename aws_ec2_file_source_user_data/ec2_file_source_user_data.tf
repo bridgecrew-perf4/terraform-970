@@ -4,14 +4,15 @@ resource "aws_instance" "first_ec2" {
   ami                 = "ami-0be2609ba883822ec"
   instance_type       = "t2.micro"
   vpc_security_group_ids = [ aws_security_group.web_instance_sg_allow_80_22.id ]
-  user_data     = data.local_file.user_data.content
+  user_data     = data.template_file.user_data.rendered
   tags = {
     Name        = "webserver_1"
     Environment = var.env
   }
 }
-data "local_file" "user_data" {
-  filename = file("user_data.sh")
+
+data "template_file" "user_data" {
+  template = file("user_data.sh")
 }
 
 # Security group
