@@ -1,7 +1,5 @@
-Ignore providers file
+Ignore following file:
 
-*providers.*
 .DS_Store
 .terraform
 *.tfstate
-variable.*
