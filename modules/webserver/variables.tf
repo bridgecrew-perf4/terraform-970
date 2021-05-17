@@ -1,10 +1,14 @@
 variable "env" {
     description = "name of the environment"
-    #default = "dev"
     type = string
 }
+
 variable "instance_type" {
     description = "instance type"
-    #default = "t2.micro"
     type = string
+}
+
+variable "remote_state" {
+  description = "remote state"
+  type = map(string)
 }
