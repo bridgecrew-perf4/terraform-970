@@ -8,10 +8,12 @@ variable "instance_class" {
     description = " database instance class"
     type = string
 }
+
 variable "env" {
     description = "name of the environment"
     type = string
 }
+
 variable "storage" {
   description = "size of the storage"
   type    = string
