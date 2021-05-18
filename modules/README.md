@@ -20,6 +20,17 @@ data "terraform_remote_state" "rds" {
     region = var.remote_state["region"]
   }
 }
+
+defined remote_state in variables.tf in webserver child module:
+
+```
+.......
+variable "remote_state" {
+  description = "remote state"
+   type = map(string)
+ }
+```
+
 ```
 And when we call it we just pass values of our bucket,
 ```
