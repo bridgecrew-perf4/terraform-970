@@ -1,1 +1,0 @@
-In this simple template we are creating ec2 instance with variables.tf file, where instead of hard coding the instance type and ami in the actual template we are telling terraform get the values for those resources from the variables.tf file. 
