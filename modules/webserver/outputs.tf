@@ -17,3 +17,13 @@ output "module_web_alb_dns" {
   value = aws_lb.web_alb.dns_name
   description = "webserver's load balancer dns"
 }
+
+output "rds_address" { # rds endpoint
+    value = data.terraform_remote_state.rds.outputs.module_address
+    description = "this is the  address of rds instance"
+}
+
+output "rds_username" {
+    value = data.terraform_remote_state.rds.outputs.module_username
+    description = "this is the  address of rds instance"
+}
