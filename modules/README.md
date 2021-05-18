@@ -12,4 +12,4 @@ Modules don't contain providers file or any .terraform folders, because we don't
 
 ## Useful links
 
-(Creating Modules)[https://www.terraform.io/docs/language/modules/develop/index.html]
+[Creating Modules](https://www.terraform.io/docs/language/modules/develop/index.html)
