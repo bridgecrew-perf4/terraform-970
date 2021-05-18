@@ -1,8 +1,8 @@
-output "address" { # rds endpoint
+output "module_address" { # rds endpoint
     value = aws_db_instance.rds-db.address
     description = "this is the  address of rds instance"
 }
-output "username" {
+output "module_username" {
     value = aws_db_instance.rds-db.username
     description = "this is the  address of rds instance"
 }
