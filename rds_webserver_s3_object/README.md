@@ -38,7 +38,13 @@ In `rds.tf` file we have an argument  `final_snapshot_identifier` which makes su
   .....
 ```
 
-Our rds doesn't have egress rule for security reasons and ingress rule open to our local machine and database itself.
+Our rds doesn't have egress rule for security reasons and ingress rule open to our local machine and database itself. Since we open the port from our local machine we can get inside of our database by running command,
+```
+mysql -h endpoint_of_rds -u admin -p
+```
+It will be more clear in the next image,
+
+<img src="images/mysql.png" alt="aws" width="700" height="200">
 
 Webserver contains application load balancer, autoscaling group, launch template, outputs.tf, variables file and remote state file. Having here remote_state.tf file as we said at the beginning gives us ability to get some data from rds.tfstate file. In our case we want to retrive endpoint of rds and the username of database.
 
