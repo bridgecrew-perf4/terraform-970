@@ -1,14 +1,19 @@
-output "webserver_launch_template_id" {
+output "web_lt_id" {
   value = aws_launch_template.web_template.id
   description = "the name of webserver launch template id"
 }
 
-output "webserver_asg_arn" {
+output "web_asg_arn" {
   value = aws_autoscaling_group.web_asg.arn
   description = "webserver's asg id"
 }
 
-output "webserver_alb_arn" {
+output "web_alb_arn" {
   value = aws_lb.web_alb.arn
   description = "webserver's load balancer arn"
+}
+
+output "web_alb_dns" {
+  value = aws_lb.webserver_alb.dns_name
+  description = "webserver's load balancer dns"
 }
