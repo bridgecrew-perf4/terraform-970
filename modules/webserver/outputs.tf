@@ -14,6 +14,6 @@ output "module_web_alb_arn" {
 }
 
 output "module_web_alb_dns" {
-  value = aws_lb.webserver_alb.dns_name
+  value = aws_lb.web_alb.dns_name
   description = "webserver's load balancer dns"
 }
