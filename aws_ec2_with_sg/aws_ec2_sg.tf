@@ -1,4 +1,3 @@
-
 resource "aws_instance" "second_ec2" {
   depends_on             = [ aws_security_group.second_sg ]
   ami                    = "ami-0be2609ba883822ec"
