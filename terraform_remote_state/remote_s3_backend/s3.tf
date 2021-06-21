@@ -36,7 +36,7 @@ data "aws_iam_policy_document" "state_policy_document" {
 
     principals {
         type = "AWS"
-        identifiers = ["arn:aws:iam::974912841781:user/tf-user"]
+        identifiers = ["arn:aws:iam::account_id:user/tf-user"]
     }
   }
 
@@ -51,7 +51,7 @@ data "aws_iam_policy_document" "state_policy_document" {
 
     principals {
         type = "AWS"
-        identifiers = ["arn:aws:iam::974912841781:user/tf-user"]
+        identifiers = ["arn:aws:iam::account_id:user/tf-user"]
     }
   }
 }
