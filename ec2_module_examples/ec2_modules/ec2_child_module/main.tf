@@ -27,6 +27,3 @@ data "aws_ami" "amazon_linux2" {
     values = ["ebs"]
   }
 }
-
-
-
